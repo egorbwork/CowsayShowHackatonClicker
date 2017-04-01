@@ -1,1 +1,1 @@
-CowsayShowHackatonClicker
+Cowsay Show Hackaton Clicker
