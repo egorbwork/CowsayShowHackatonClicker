@@ -91,14 +91,16 @@ class showTimer {
     }
 
     resetStream() {
-        this.timeTrackerList.innerHTML = '';
-        this.startStreamButton.removeAttribute("disabled");
-        this.startShowButton.setAttribute("disabled", true);
-        this.startMusicPauseButton.setAttribute("disabled", true);
-        this.endMusicPauseButton.setAttribute("disabled", true);
-        this.startTechnicalProblemsButton.setAttribute("disabled", true);
-        this.endTechnicalProblemsButton.setAttribute("disabled", true);
-        this.endShowButton.setAttribute("disabled", true);
+        if (confirm('All tracked time will be lost. Are you sure?')) {
+            this.timeTrackerList.innerHTML = '';
+            this.startStreamButton.removeAttribute("disabled");
+            this.startShowButton.setAttribute("disabled", true);
+            this.startMusicPauseButton.setAttribute("disabled", true);
+            this.endMusicPauseButton.setAttribute("disabled", true);
+            this.startTechnicalProblemsButton.setAttribute("disabled", true);
+            this.endTechnicalProblemsButton.setAttribute("disabled", true);
+            this.endShowButton.setAttribute("disabled", true);
+        }
     }
 
     createTextListItem(text) {
