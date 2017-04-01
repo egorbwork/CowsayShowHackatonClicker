@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Cowsay Clicker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <h2 class="text-center">Application for Cowsay Show time tracking.</h2>
+
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-3 btn-group-vertical btn-group" role="group" aria-label="steps-buttons">
+                <button type="button" class="btn btn-warning" id="startStreamButton"><span>Stream Start</span></button>
+                <button type="button" class="btn btn-success" disabled id="startShowButton"><span>Show Start</span></button>
+                <button type="button" class="btn btn-info" disabled id="startMusicPauseButton"><span>Music Pause Start</span></button>
+                <button type="button" class="btn btn-info" disabled id="endMusicPauseButton"><span>Music Pause End</span></button>
+                <button type="button" class="btn btn-danger" disabled id="startTechnicalProblemsButton"><span>Technical Problems Start</span></button>
+                <button type="button" class="btn btn-danger" disabled id="endTechnicalProblemsButton"><span>Technical Problems End</span></button>
+                <button type="button" class="btn btn-success" disabled id="endShowButton"><span>Show End</span></button>
+            </div>
+            <div class="col-lg-8">
+                <ul class="list-group time" id="timeTracker">
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-3 btn-group-vertical btn-group" role="group" aria-label="special-buttons">
+                <button type="button" class="btn btn-warning" id="resetStream"><span>Reset Stream</span></button>
+                <button type="button" class="btn btn-warning" id="copyTimestampsToClipboard"><span>Copy Timestamps To Clipboard</span></button>
+            </div>
+        </div>
+
+        <!-- Included JS scripts -->
+        <script type="application/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script type="application/javascript" src="js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="js/plugins.js"></script>
+        <script type="application/javascript" src="js/main.js"></script>
+    </body>
+</html>
