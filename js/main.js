@@ -8,7 +8,9 @@ class showTimer {
         startTechnicalProblemsButton,
         endTechnicalProblemsButton,
         endShowButton,
-        copyToClipoardTimestampsButton
+        copyToClipboardTimestampsButton,
+        copyToClipboardTimeTrackButton,
+        resetStreamButton
     ) {
         this.timeTrackerList = timeTrackerList;
         this.startStreamButton = startStreamButton;
@@ -18,7 +20,9 @@ class showTimer {
         this.startTechnicalProblemsButton = startTechnicalProblemsButton;
         this.endTechnicalProblemsButton = endTechnicalProblemsButton;
         this.endShowButton = endShowButton;
-        this.copyToClipoardTimestampsButton = copyToClipoardTimestampsButton;
+        this.copyToClipoardTimestampsButton = copyToClipboardTimestampsButton;
+        this.copyToClipboardTimeTrackButton = copyToClipboardTimeTrackButton;
+        this.resetStreamButton = resetStreamButton;
         this.streamStartDate;
 
         this.startStreamButton.onclick = () => (this.startStream());
@@ -28,7 +32,9 @@ class showTimer {
         this.startTechnicalProblemsButton.onclick = () => (this.startTechnicalProblems());
         this.endTechnicalProblemsButton.onclick = () => (this.endTechnicalProblems());
         this.endShowButton.onclick = () => (this.endShow());
-        this.copyToClipoardTimestampsButton.onclick = () => (this.copyToClipBoardTimestamps());
+        this.copyToClipoardTimestampsButton.onclick = () => (this.copyToClipboardTimestamps(true));
+        this.copyToClipboardTimeTrackButton.onclick = () => (this.copyToClipboardTimestamps(false));
+        this.resetStreamButton.onclick = () => (this.resetStream());
     }
 
     startStream() {
@@ -84,6 +90,17 @@ class showTimer {
         );
     }
 
+    resetStream() {
+        this.timeTrackerList.innerHTML = '';
+        this.startStreamButton.removeAttribute("disabled");
+        this.startShowButton.setAttribute("disabled", true);
+        this.startMusicPauseButton.setAttribute("disabled", true);
+        this.endMusicPauseButton.setAttribute("disabled", true);
+        this.startTechnicalProblemsButton.setAttribute("disabled", true);
+        this.endTechnicalProblemsButton.setAttribute("disabled", true);
+        this.endShowButton.setAttribute("disabled", true);
+    }
+
     createTextListItem(text) {
         var textListItem = document.createElement('li');
         textListItem.innerHTML = text;
@@ -94,8 +111,9 @@ class showTimer {
 
     createTimeListItem() {
         var timeListItem = document.createElement('li');
-        timeListItem.innerHTML = this.getTimeFromStreamStart();
-        timeListItem.setAttribute('class', 'list-group-item time-track');
+        timeListItem.innerHTML = '<span class="time-track">' + this.getTimeFromStreamStart()
+            + '</span> / <span class="timestamp">' + Date.now() + '</span>';
+        timeListItem.setAttribute('class', 'list-group-item');
 
         return timeListItem;
     }
@@ -121,9 +139,10 @@ class showTimer {
         return `${hours}:${minutes}:${seconds}:${milliseconds}`;
     }
 
-    copyToClipBoardTimestamps() {
+    copyToClipboardTimestamps(copyTimestamp = false) {
         var text = '';
-        for (var listItem of document.getElementsByClassName('time-track')) {
+        let classForSearch = copyTimestamp ? 'timestamp' : 'time-track';
+        for (var listItem of document.getElementsByClassName(classForSearch)) {
             text += listItem.innerHTML + '\n';
         }
 
@@ -178,7 +197,9 @@ var showTimerInstance = new showTimer(
     document.getElementById('startTechnicalProblemsButton'),
     document.getElementById('endTechnicalProblemsButton'),
     document.getElementById('endShowButton'),
-    document.getElementById('copyTimestampsToClipboard')
+    document.getElementById('copyTimestampsToClipboardButton'),
+    document.getElementById('copyTimeTrackToClipboardButton'),
+    document.getElementById('resetStreamButton')
 );
 
 window.addEventListener("beforeunload", function (event) {
